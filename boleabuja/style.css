@@ -620,3 +620,66 @@ body {
         font-size: 1.5rem; /* Adjust if needed */
     }
 }
+/* Logo Styles - Desktop */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 45px; /* Optimal desktop size */
+    width: auto;
+    transition: all 0.3s ease;
+}
+
+.logo-text {
+    margin: 0;
+    font-size: 1.8rem;
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .header .container {
+        padding: 12px 15px; /* Tighter padding on mobile */
+    }
+    
+    .logo-img {
+        height: 36px; /* Slightly smaller logo */
+    }
+    
+    .logo-text {
+        font-size: 1.4rem; /* Smaller text */
+        display: none; /* Hide text if needed */
+    }
+    
+    /* Alternative: Keep text but reduce gap */
+    .logo {
+        gap: 8px;
+    }
+}
+
+/* For very small devices */
+@media (max-width: 480px) {
+    .logo-img {
+        height: 32px;
+    }
+    
+    /* Option: Show only logo on smallest screens */
+    .logo-text {
+        display: none;
+    }
+    
+    /* Ensure nav items don't wrap */
+    .navbar {
+        gap: 12px;
+    }
+    
+    .btn-order {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
+}
