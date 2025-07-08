@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoleAbuja | Authentic Nigerian Street Food</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+   <header class="header">
+    <div class="container">
+        <a href="#" class="logo">
+            <!-- Add img tag before h1 -->
+            <img src="logo1.png" alt="BoleAbuja Logo" class="logo-img">
+            <h1>BoleAbuja</h1>
+        </a>
+        <nav class="navbar">
+            <!-- Keep existing nav links the same -->
+            <a href="#home">Home</a>
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+            <button class="btn-order">ORDER NOW</button>
+        </nav>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</header>
+    <!-- Cart Icon -->
+    <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count">0</span>
+    </div>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <span class="close-cart">&times;</span>
+            <h2><i class="fas fa-receipt"></i> Your Order</h2>
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will load here -->
+            </div>
+            <div class="cart-total">
+                <h3>Total: <span id="cartTotal">₦0</span></h3>
+                <button class="btn-checkout">PROCEED TO CHECKOUT</button>
+            </div>
+        </div>
+    </div>
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <!-- Background image will go here via CSS -->
+    <div class="hero-overlay"></div> <!-- New overlay element -->
+    <div class="container">
+        <div class="hero-content">
+            <h1>ABUJA'S BEST <span>BOLE & FISH</span></h1>
+            <p>Authentic Nigerian street food at its finest</p>
+            <div class="hero-btns">
+                <button class="btn-primary">ORDER NOW</button>
+                <button class="btn-secondary">VIEW MENU</button>
+            </div>
+        </div>
+    </div>
+</section>
+  
+    <!-- Menu Section -->
+    <section class="menu" id="menu">
+        <div class="container">
+            <h2 class="section-title">OUR <span>MENU</span></h2>
+            
+            <!-- Filter Controls -->
+            <div class="menu-filters">
+                <div class="filter-tabs">
+                    <button class="filter-tab active" data-category="all">All Items</button>
+                    <button class="filter-tab" data-category="bole">Bole Varieties</button>
+                    <button class="filter-tab" data-category="platter">Platters</button>
+                    <button class="filter-tab" data-category="extra">Extras</button>
+                </div>
+                <div class="filter-search">
+                    <input type="text" id="menuSearch" placeholder="Search dishes...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="price-filter">
+                    <span>Price: </span>
+                    <select id="priceRange">
+                        <option value="all">All Prices</option>
+                        <option value="5000">Under ₦5,000</option>
+                        <option value="5000-10000">₦5,000 – ₦10,000</option>
+                        <option value="10000">Above ₦10,000</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="menu-items">
+                <!-- Bole Varieties -->
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandfish.jpg" alt="Bole and Fish">
+                    <h3>Bole and Fish</h3>
+                    <p>2 plantains and a portion of spicy fish</p>
+                    <p class="price">₦4,000</p>
+                    <button class="btn-add" data-item="Bole and Fish" data-price="4000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandchicken.jpg" alt="Bole and Chicken">
+                    <h3>Bole and Chicken</h3>
+                    <p>2 plantains and a portion of stewed chicken</p>
+                    <p class="price">₦4,000</p>
+                    <button class="btn-add" data-item="Bole and Chicken" data-price="4000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandasun.jpg" alt="Bole and Asun">
+                    <h3>Bole and Asun</h3>
+                    <p>2 plantains and a portion of spicy goat meat</p>
+                    <p class="price">₦4,000</p>
+                    <button class="btn-add" data-item="Bole and Asun" data-price="4000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="chickenwings.jpg" alt="Bole and Chicken Wings">
+                    <h3>Bole and Chicken Wings</h3>
+                    <p>2 plantains and a piece of grilled chicken wings</p>
+                    <p class="price">₦5,000</p>
+                    <button class="btn-add" data-item="Bole and Chicken Wings" data-price="5000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="prawns.jpeg" alt="Bole and Prawns">
+                    <h3>Bole and Prawns</h3>
+                    <p>2 plantains and a portion of grilled prawns</p>
+                    <p class="price">₦7,000</p>
+                    <button class="btn-add" data-item="Bole and Prawns" data-price="7000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandsnail.jpg" alt="Bole and Snails">
+                    <h3>Bole and Snails</h3>
+                    <p>2 plantains and a portion of spicy snails</p>
+                    <p class="price">₦6,000</p>
+                    <button class="btn-add" data-item="Bole and Snails" data-price="6000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandcroaker.jpg" alt="Bole and Croaker">
+                    <h3>Bole and Croaker</h3>
+                    <p>2 plantains and a slice of croaker fish</p>
+                    <p class="price">₦5,000</p>
+                    <button class="btn-add" data-item="Bole and Croaker" data-price="5000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="turkey.jpg" alt="Bole and Turkey">
+                    <h3>Bole and Turkey</h3>
+                    <p>2 plantains and 3 pieces of turkey wings</p>
+                    <p class="price">₦7,500</p>
+                    <button class="btn-add" data-item="Bole and Turkey" data-price="7500">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandtilapia.jpg" alt="Bole and Tilapia">
+                    <h3>Bole and Tilapia</h3>
+                    <p>2 plantains and a slice of tilapia fish</p>
+                    <p class="price">₦6,500</p>
+                    <button class="btn-add" data-item="Bole and Tilapia" data-price="6500">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="bole">
+                    <img src="boleandtitus.jpg" alt="Bole and Titus">
+                    <h3>Bole and Titus</h3>
+                    <p>2 plantains and 6 pieces of Titus fish</p>
+                    <p class="price">₦7,500</p>
+                    <button class="btn-add" data-item="Bole and Titus" data-price="7500">ADD TO CART</button>
+                </div>
+
+                <!-- Platters -->
+                <div class="menu-item" data-category="platter">
+                    <img src="images/junior-platter.jpg" alt="Junior Platter">
+                    <h3>Junior Platter</h3>
+                    <p>Turkey, 3 wings, 2 plantains, and a portion of yam</p>
+                    <p class="price">₦9,000</p>
+                    <button class="btn-add" data-item="Junior Platter" data-price="9000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="platter">
+                    <img src="images/generous-platter.jpg" alt="Generous Platter">
+                    <h3>Generous Platter</h3>
+                    <p>3 turkey wings, 2 croaker fish, 4 plantains, and yam</p>
+                    <p class="price">₦10,000</p>
+                    <button class="btn-add" data-item="Generous Platter" data-price="10000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="platter">
+                    <img src="images/savory-platter.jpg" alt="Savory Platter">
+                    <h3>Savory Platter</h3>
+                    <p>Mixed grill with assorted meats, fish, and sides</p>
+                    <p class="price">₦30,000</p>
+                    <button class="btn-add" data-item="Savory Platter" data-price="30000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="platter">
+                    <img src="images/family-platter.jpg" alt="Family Platter">
+                    <h3>Family Platter</h3>
+                    <p>Large mixed grill for 4-6 people with all the works</p>
+                    <p class="price">₦45,000</p>
+                    <button class="btn-add" data-item="Family Platter" data-price="45000">ADD TO CART</button>
+                </div>
+
+                <!-- Extras -->
+                <div class="menu-item" data-category="extra">
+                    <img src="images/yam.jpg" alt="Yam">
+                    <h3>Extra Yam</h3>
+                    <p>Additional portion of boiled yam</p>
+                    <p class="price">₦1,000</p>
+                    <button class="btn-add" data-item="Extra Yam" data-price="1000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/plantain.jpg" alt="Extra Plantain">
+                    <h3>Extra Plantain</h3>
+                    <p>Additional roasted plantain</p>
+                    <p class="price">₦800</p>
+                    <button class="btn-add" data-item="Extra Plantain" data-price="800">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/turkey.jpg" alt="Extra Turkey">
+                    <h3>Extra Turkey</h3>
+                    <p>Additional turkey wing</p>
+                    <p class="price">₦1,500</p>
+                    <button class="btn-add" data-item="Extra Turkey" data-price="1500">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/tilapia.jpg" alt="Extra Tilapia">
+                    <h3>Extra Tilapia</h3>
+                    <p>Additional slice of tilapia fish</p>
+                    <p class="price">₦2,000</p>
+                    <button class="btn-add" data-item="Extra Tilapia" data-price="2000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/croaker.jpg" alt="Extra Croaker">
+                    <h3>Extra Croaker</h3>
+                    <p>Additional slice of croaker fish</p>
+                    <p class="price">₦1,800</p>
+                    <button class="btn-add" data-item="Extra Croaker" data-price="1800">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/chicken-wings.jpg" alt="Extra Chicken Wings">
+                    <h3>Extra Chicken Wings</h3>
+                    <p>Additional chicken wing</p>
+                    <p class="price">₦1,200</p>
+                    <button class="btn-add" data-item="Extra Chicken Wings" data-price="1200">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/asun.jpg" alt="Extra Asun">
+                    <h3>Extra Asun</h3>
+                    <p>Additional portion of spicy goat meat</p>
+                    <p class="price">₦2,500</p>
+                    <button class="btn-add" data-item="Extra Asun" data-price="2500">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/prawn.jpg" alt="Extra Prawns">
+                    <h3>Extra Prawns</h3>
+                    <p>Additional portion of grilled prawns</p>
+                    <p class="price">₦3,000</p>
+                    <button class="btn-add" data-item="Extra Prawns" data-price="3000">ADD TO CART</button>
+                </div>
+
+                <div class="menu-item" data-category="extra">
+                    <img src="images/snail.jpg" alt="Extra Snails">
+                    <h3>Extra Snails</h3>
+                    <p>Additional portion of spicy snails</p>
+                    <p class="price">₦3,500</p>
+                    <button class="btn-add" data-item="Extra Snails" data-price="3500">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <h2>BoleAbuja</h2>
+                <p>Authentic Nigerian Flavors Since 2015</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="#home">Home</a>
+                <a href="#menu">Menu</a>
+                <a href="#about">About Us</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-contact"id="contact">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Riverplate Park, Wuse 2 Abuja</p>
+                <p><i class="fas fa-phone"></i> +234 705 447 4224</p>
+                <p><i class="fas fa-phone"></i> +234 811 727 7260</p>
+                <p><i class="fas fa-envelope"></i> hello@boleabuja.com</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i> @boleabuja</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 BoleAbuja. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/2347054474224" class="whatsapp-btn">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="script.js"></script>
+</body>
+</html>
