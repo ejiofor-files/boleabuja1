@@ -35,20 +35,102 @@
         <span class="cart-count">0</span>
     </div>
 
-    <!-- Cart Modal -->
-    <div class="cart-modal" id="cartModal">
-        <div class="cart-content">
-            <span class="close-cart">&times;</span>
-            <h2><i class="fas fa-receipt"></i> Your Order</h2>
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will load here -->
+   <!-- Cart Modal -->
+<div class="cart-modal" id="cartModal">
+    <div class="cart-content">
+        <span class="close-cart">&times;</span>
+        <h2><i class="fas fa-receipt"></i> Your Order</h2>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will load here -->
+        </div>
+        
+        <!-- Delivery Options Section -->
+        <div class="delivery-options" id="deliveryOptions" style="display:none;">
+            <h3><i class="fas fa-truck"></i> Delivery Options</h3>
+            
+            <div class="delivery-area">
+                <label>
+                    <input type="radio" name="deliveryOption" value="pickup" checked> 
+                    <span class="delivery-option">
+                        <i class="fas fa-store"></i>
+                        <span>Pick Up In-Store</span>
+                        <span class="delivery-price">(₦0)</span>
+                    </span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="deliveryOption" value="wuse"> 
+                    <span class="delivery-option">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Wuse Zone</span>
+                        <span class="delivery-price">(₦1,500)</span>
+                    </span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="deliveryOption" value="garki"> 
+                    <span class="delivery-option">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Garki</span>
+                        <span class="delivery-price">(₦2,000)</span>
+                    </span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="deliveryOption" value="maitama"> 
+                    <span class="delivery-option">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Maitama</span>
+                        <span class="delivery-price">(₦2,500)</span>
+                    </span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="deliveryOption" value="asokoro"> 
+                    <span class="delivery-option">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Asokoro</span>
+                        <span class="delivery-price">(₦3,000)</span>
+                    </span>
+                </label>
+                
+                <label>
+                    <input type="radio" name="deliveryOption" value="kubwa"> 
+                    <span class="delivery-option">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kubwa</span>
+                        <span class="delivery-price">(₦3,500)</span>
+                    </span>
+                </label>
             </div>
-            <div class="cart-total">
-                <h3>Total: <span id="cartTotal">₦0</span></h3>
-                <button class="btn-checkout">PROCEED TO CHECKOUT</button>
+            
+            <div class="delivery-notes">
+                <p><i class="fas fa-clock"></i> Delivery time: 30-60 minutes</p>
+                <textarea placeholder="Delivery instructions (building, landmark, etc.)"></textarea>
             </div>
+            
+            <button class="btn-confirm-delivery">
+                <i class="fas fa-check-circle"></i> CONFIRM ORDER
+            </button>
+        </div>
+        
+        <div class="cart-total">
+            <div class="price-breakdown">
+                <h3>Subtotal: <span id="cartSubtotal">₦0</span></h3>
+                <h3>Delivery: <span id="deliveryFee">₦0</span></h3>
+                <h2>Total: <span id="cartTotal">₦0</span></h2>
+            </div>
+            
+            <button class="btn-checkout">
+                <i class="fas fa-arrow-right"></i> PROCEED TO CHECKOUT
+            </button>
+            
+            <button class="btn-back-to-cart" style="display:none;">
+                <i class="fas fa-arrow-left"></i> BACK TO CART
+            </button>
         </div>
     </div>
+</div>
 <!-- Hero Section -->
 <section class="hero" id="home">
     <!-- Background image will go here via CSS -->

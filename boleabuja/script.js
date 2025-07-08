@@ -1,4 +1,4 @@
-// Update your mobile menu toggle to this
+// Mobile Menu Toggle
 document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
     const navbar = document.querySelector('.navbar');
     navbar.classList.toggle('active');
@@ -6,6 +6,7 @@ document.querySelector('.mobile-menu-btn').addEventListener('click', function() 
     // Close cart if open when menu opens
     if (navbar.classList.contains('active')) {
         document.getElementById('cartModal').style.display = 'none';
+        document.body.style.overflow = 'auto';
     }
 });
 
@@ -15,18 +16,31 @@ const cartIcon = document.getElementById('cartIcon');
 const cartModal = document.getElementById('cartModal');
 const cartItems = document.getElementById('cartItems');
 const cartTotal = document.getElementById('cartTotal');
+const cartSubtotal = document.getElementById('cartSubtotal');
+const deliveryFee = document.getElementById('deliveryFee');
 const closeCart = document.querySelector('.close-cart');
+
+// Delivery fee structure
+const deliveryFees = {
+    pickup: 0,
+    wuse: 1500,
+    garki: 2000,
+    maitama: 2500,
+    asokoro: 3000,
+    kubwa: 3500
+};
 
 // Open/Close Cart
 cartIcon.addEventListener('click', () => {
     cartModal.style.display = 'block';
     renderCart();
-    document.body.style.overflow = 'hidden'; // Prevent scrolling when cart is open
+    document.body.style.overflow = 'hidden';
 });
 
 closeCart.addEventListener('click', () => {
     cartModal.style.display = 'none';
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
+    document.body.style.overflow = 'auto';
+    hideDeliveryOptions();
 });
 
 // Close cart when clicking outside
@@ -34,6 +48,7 @@ window.addEventListener('click', (e) => {
     if (e.target === cartModal) {
         cartModal.style.display = 'none';
         document.body.style.overflow = 'auto';
+        hideDeliveryOptions();
     }
 });
 
@@ -43,7 +58,6 @@ document.querySelectorAll('.btn-add').forEach(button => {
         const item = this.getAttribute('data-item');
         const price = parseInt(this.getAttribute('data-price'));
         
-        // Check if item already in cart
         const existingItem = cart.find(cartItem => cartItem.name === item);
         
         if (existingItem) {
@@ -64,17 +78,19 @@ document.querySelectorAll('.btn-add').forEach(button => {
 // Render Cart Items
 function renderCart() {
     cartItems.innerHTML = '';
-    let total = 0;
+    let subtotal = 0;
     
     if (cart.length === 0) {
         cartItems.innerHTML = '<p class="empty-cart">Your cart is empty</p>';
+        cartSubtotal.textContent = '₦0';
+        deliveryFee.textContent = '₦0';
         cartTotal.textContent = '₦0';
         return;
     }
     
     cart.forEach((item, index) => {
         const itemTotal = item.price * item.quantity;
-        total += itemTotal;
+        subtotal += itemTotal;
         
         const cartItemElement = document.createElement('div');
         cartItemElement.className = 'cart-item';
@@ -94,7 +110,8 @@ function renderCart() {
         cartItems.appendChild(cartItemElement);
     });
     
-    cartTotal.textContent = `₦${total.toLocaleString()}`;
+    cartSubtotal.textContent = `₦${subtotal.toLocaleString()}`;
+    updateDeliveryTotal();
     
     // Add event listeners to new buttons
     document.querySelectorAll('.decrease-item').forEach(button => {
@@ -133,10 +150,61 @@ function renderCart() {
 function updateCartCount() {
     const count = cart.reduce((total, item) => total + item.quantity, 0);
     document.querySelector('.cart-count').textContent = count;
-    
-    // Save cart to localStorage
     localStorage.setItem('boleabujaCart', JSON.stringify(cart));
 }
+
+// Delivery Options Functions
+function showDeliveryOptions() {
+    document.getElementById('deliveryOptions').style.display = 'block';
+    document.querySelector('.btn-checkout').style.display = 'none';
+    document.querySelector('.btn-back-to-cart').style.display = 'block';
+}
+
+function hideDeliveryOptions() {
+    document.getElementById('deliveryOptions').style.display = 'none';
+    document.querySelector('.btn-checkout').style.display = 'block';
+    document.querySelector('.btn-back-to-cart').style.display = 'none';
+}
+
+function updateDeliveryTotal() {
+    const selectedOption = document.querySelector('input[name="deliveryOption"]:checked').value;
+    const fee = deliveryFees[selectedOption];
+    const subtotal = parseInt(document.getElementById('cartSubtotal').textContent.replace(/\D/g, ''));
+    
+    deliveryFee.textContent = `₦${fee.toLocaleString()}`;
+    cartTotal.textContent = `₦${(subtotal + fee).toLocaleString()}`;
+}
+
+// Checkout Button
+document.querySelector('.btn-checkout').addEventListener('click', showDeliveryOptions);
+
+// Back to Cart Button
+document.querySelector('.btn-back-to-cart').addEventListener('click', hideDeliveryOptions);
+
+// Delivery Option Selection
+document.querySelectorAll('input[name="deliveryOption"]').forEach(radio => {
+    radio.addEventListener('change', updateDeliveryTotal);
+});
+
+// Confirm Order Button
+document.querySelector('.btn-confirm-delivery').addEventListener('click', function() {
+    const selectedOption = document.querySelector('input[name="deliveryOption"]:checked').value;
+    const deliveryNotes = document.querySelector('.delivery-notes textarea').value;
+    const total = document.getElementById('cartTotal').textContent;
+    
+    // Here you would typically send to your backend
+    alert(`Order confirmed!\n\n${selectedOption === 'pickup' ? 
+        'Please come pick up your order' : 
+        `Your order will be delivered (Fee: ₦${deliveryFees[selectedOption].toLocaleString()})`
+    }\n\nTotal: ${total}`);
+    
+    // Reset cart
+    cart = [];
+    updateCartCount();
+    cartModal.style.display = 'none';
+    hideDeliveryOptions();
+    document.querySelector('.delivery-notes textarea').value = '';
+});
 
 // Add to cart animation
 function showAddToCartAnimation(button) {
@@ -158,7 +226,6 @@ function showAddToCartAnimation(button) {
     
     document.body.appendChild(animationElement);
     
-    // Trigger animation
     setTimeout(() => {
         animationElement.style.left = `${cartIconRect.left + cartIconRect.width/2}px`;
         animationElement.style.top = `${cartIconRect.top + cartIconRect.height/2}px`;
@@ -166,7 +233,6 @@ function showAddToCartAnimation(button) {
         animationElement.style.transform = 'scale(0.5)';
     }, 10);
     
-    // Remove element after animation
     setTimeout(() => {
         animationElement.remove();
     }, 600);
@@ -178,7 +244,6 @@ const menuSearch = document.getElementById('menuSearch');
 const priceRange = document.getElementById('priceRange');
 const menuItems = document.querySelectorAll('.menu-item');
 
-// Filter by Category
 filterTabs.forEach(tab => {
     tab.addEventListener('click', function() {
         filterTabs.forEach(t => t.classList.remove('active'));
@@ -187,7 +252,6 @@ filterTabs.forEach(tab => {
     });
 });
 
-// Filter by Search & Price
 menuSearch.addEventListener('input', filterMenuItems);
 priceRange.addEventListener('change', filterMenuItems);
 
@@ -201,7 +265,6 @@ function filterMenuItems() {
         const itemPrice = parseInt(item.querySelector('.price').textContent.replace(/\D/g, ''));
         const itemCategory = item.dataset.category;
 
-        // Check filters
         const categoryMatch = activeCategory === 'all' || itemCategory === activeCategory;
         const searchMatch = itemName.includes(searchTerm);
         let priceMatch = true;
@@ -210,12 +273,11 @@ function filterMenuItems() {
         else if (priceSelection === '5000-10000') priceMatch = itemPrice >= 5000 && itemPrice <= 10000;
         else if (priceSelection === '10000') priceMatch = itemPrice > 10000;
 
-        // Show/hide based on filters
         item.style.display = (categoryMatch && searchMatch && priceMatch) ? 'block' : 'none';
     });
 }
 
-// Smooth scrolling for navigation
+// Smooth scrolling
 document.querySelectorAll('nav a').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -227,27 +289,19 @@ document.querySelectorAll('nav a').forEach(anchor => {
                 top: targetElement.offsetTop - 80,
                 behavior: 'smooth'
             });
-            
-            // Close mobile menu if open
             document.querySelector('.navbar').classList.remove('active');
         }
     });
 });
 
-// Order Now button scroll to menu
 document.querySelector('.btn-primary').addEventListener('click', () => {
-    document.querySelector('#menu').scrollIntoView({
-        behavior: 'smooth'
-    });
+    document.querySelector('#menu').scrollIntoView({ behavior: 'smooth' });
 });
 
-// View Menu button scroll to menu
 document.querySelector('.btn-secondary').addEventListener('click', () => {
-    document.querySelector('#menu').scrollIntoView({
-        behavior: 'smooth'
-    });
+    document.querySelector('#menu').scrollIntoView({ behavior: 'smooth' });
 });
 
 // Initialize
 updateCartCount();
-filterMenuItems(); // Apply initial filtering
+filterMenuItems();
