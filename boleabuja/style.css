@@ -683,3 +683,40 @@ body {
         font-size: 0.9rem;
     }
 }
+/* Replace your existing mobile logo styles with this */
+@media (max-width: 768px) {
+    .logo-text {
+        display: inline-block !important; /* Force show text */
+        font-size: 1.3rem; /* Adjusted size */
+        white-space: nowrap; /* Prevent line break */
+    }
+    
+    .logo-img {
+        height: 32px; /* Better proportion */
+    }
+    
+    .logo {
+        min-width: auto; /* Allow natural shrinking */
+        gap: 6px; /* Tighter spacing */
+    }
+}
+/* Add these new styles */
+@media (max-width: 768px) {
+    .cart-icon {
+        top: 15px; /* Lower position */
+        right: 60px; /* Left of menu button */
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+    
+    .mobile-menu-btn {
+        right: 15px; /* Ensure consistent spacing */
+        z-index: 1002; /* Above cart icon */
+    }
+    
+    .navbar.active {
+        top: 70px; /* Push down below header */
+        padding-top: 20px; /* Space for cart */
+    }
+}

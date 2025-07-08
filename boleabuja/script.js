@@ -1,6 +1,12 @@
-// Mobile Menu Toggle
+// Update your mobile menu toggle to this
 document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-    document.querySelector('.navbar').classList.toggle('active');
+    const navbar = document.querySelector('.navbar');
+    navbar.classList.toggle('active');
+    
+    // Close cart if open when menu opens
+    if (navbar.classList.contains('active')) {
+        document.getElementById('cartModal').style.display = 'none';
+    }
 });
 
 // Cart Functionality
