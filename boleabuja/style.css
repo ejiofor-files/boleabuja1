@@ -85,12 +85,6 @@ body {
     align-items: center;
 }
 
-.logo h1 {
-    color: var(--primary);
-    font-size: 1.8rem;
-    font-weight: 700;
-}
-
 .navbar {
     display: flex;
     align-items: center;
@@ -117,6 +111,50 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+/* Logo Styles */
+.logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.logo-img {
+    height: 80px; /* Adjust this value to change logo size */
+    width: auto;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    border: none;
+    margin: 0;
+    
+    /* Animation properties */
+    transition: all 0.3s ease;
+    transform-origin: center;
+    animation: subtlePulse 3s ease-in-out infinite;
+}
+
+/* Hover animation */
+.logo:hover .logo-img {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Click animation */
+.logo:active .logo-img {
+    transform: scale(0.95);
+}
+
+/* Pulse animation */
+@keyframes subtlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Remove logo text */
+.logo-text {
+    display: none;
 }
 
 .btn-order:hover {
@@ -559,7 +597,7 @@ body {
     color: var(--light);
     text-align: left;
     padding-top: 80px;
-    background: url('bolecover.jpg') no-repeat center center;
+    background: url('coverphoto.jpg') no-repeat center center;
     background-size: cover;
 }
 
@@ -584,122 +622,7 @@ body {
         background-position: 60% center; /* Focus on most important part of image */
     }
 }
-/* Logo Styles */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-}
 
-.logo-img {
-    height: 40px; /* Adjust based on your logo */
-    width: auto;
-    display: block;
-}
-
-/* Keep existing header styles, just update this */
-.header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px; /* Adjust padding if needed */
-}
-
-/* If you need to adjust the h1 */
-.logo h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: var(--primary);
-}
-@media (max-width: 768px) {
-    .logo-img {
-        height: 200px; /* Slightly smaller on mobile */
-    }
-    .logo h1 {
-        font-size: 1.5rem; /* Adjust if needed */
-    }
-}
-/* Logo Styles - Desktop */
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-}
-
-.logo-img {
-    height: 45px; /* Optimal desktop size */
-    width: auto;
-    transition: all 0.3s ease;
-}
-
-.logo-text {
-    margin: 0;
-    font-size: 1.8rem;
-    color: var(--primary);
-    transition: all 0.3s ease;
-}
-
-/* Mobile Responsiveness */
-@media (max-width: 768px) {
-    .header .container {
-        padding: 12px 15px; /* Tighter padding on mobile */
-    }
-    
-    .logo-img {
-        height: 36px; /* Slightly smaller logo */
-    }
-    
-    .logo-text {
-        font-size: 1.4rem; /* Smaller text */
-        display: none; /* Hide text if needed */
-    }
-    
-    /* Alternative: Keep text but reduce gap */
-    .logo {
-        gap: 8px;
-    }
-}
-
-/* For very small devices */
-@media (max-width: 480px) {
-    .logo-img {
-        height: 32px;
-    }
-    
-    /* Option: Show only logo on smallest screens */
-    .logo-text {
-        display: none;
-    }
-    
-    /* Ensure nav items don't wrap */
-    .navbar {
-        gap: 12px;
-    }
-    
-    .btn-order {
-        padding: 8px 12px;
-        font-size: 0.9rem;
-    }
-}
-/* Replace your existing mobile logo styles with this */
-@media (max-width: 768px) {
-    .logo-text {
-        display: inline-block !important; /* Force show text */
-        font-size: 1.3rem; /* Adjusted size */
-        white-space: nowrap; /* Prevent line break */
-    }
-    
-    .logo-img {
-        height: 32px; /* Better proportion */
-    }
-    
-    .logo {
-        min-width: auto; /* Allow natural shrinking */
-        gap: 6px; /* Tighter spacing */
-    }
-}
 /* Add these new styles */
 @media (max-width: 768px) {
     .cart-icon {
@@ -778,5 +701,123 @@ body {
     
     .cart-modal {
         width: 95%;
+    }
+}
+/* About Section Styles */
+.about {
+    background-color: #000;
+    padding: 80px 0;
+    color: #fff;
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image {
+    flex: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.3);
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.about-image:hover img {
+    transform: scale(1.05);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title span {
+    color: #ff0000;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: #ff0000;
+}
+
+.about-description {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    color: #ddd;
+}
+
+.about-highlights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.highlight-item {
+    flex: 1 1 200px;
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 0, 0, 0.2);
+}
+
+.highlight-item:hover {
+    background: rgba(255, 0, 0, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+}
+
+.highlight-icon {
+    font-size: 2.5rem;
+    color: #ff0000;
+    margin-bottom: 15px;
+}
+
+.highlight-item h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .about-content {
+        flex-direction: column;
+    }
+    
+    .about-image {
+        margin-top: 50px;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .about-highlights {
+        flex-direction: column;
     }
 }
